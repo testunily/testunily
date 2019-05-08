@@ -1,1 +1,29 @@
-hello!!!111
+@model Brightstarr.Unily.Web.Models.News.NewsArticleModel
+@using Brightstarr.Unily.Web.Enums;
+
+<section class="story-page news">    
+    <div class="tb-container">
+        <div class="row">
+            <div class="col-md-8">
+                @Html.Widget("News", Model)
+                @Html.Partial("NewsForm", Model)
+                @if (Model.SocialFeature == SocialType.Unily)
+                {
+                    <social-story-comments story-id="@Model.Id"></social-story-comments>
+                }
+                else if (Model.SocialFeature == SocialType.Yammer)
+                {
+                    @Html.Widget("PageComments", Model)
+                }
+            </div>
+            <div class="col-md-4">
+                <div class="rhs">
+                    @Html.Widget("RecentNews", Model.Id)
+                    @Html.Widget("StoryPostTags", Model)
+                    @Html.Widget("StoryPostAuthor", new[] { Model.Author })
+                </div>
+            </div>
+			<div>HELLO WORLDS!!!</div>
+        </div>
+    </div>
+</section>
